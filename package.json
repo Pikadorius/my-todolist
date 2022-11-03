@@ -1,6 +1,6 @@
 {
   "name": "my-todolist",
-  "homegage": "https://Pikadorius.github.io/my-todolist",
+  "homepage": "https://Pikadorius.github.io/my-todolist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
