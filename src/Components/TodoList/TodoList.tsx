@@ -43,12 +43,17 @@ const TodoList: React.FC<TodoListType> = (
                 <li key={t.id}>
                     <Checkbox checked={t.done} setChecked={changeStatus}/>
                     <span className={s.task}>{t.name}</span>
-                    <Button buttonCss={''} name={'x'} onClick={() => deleteTask(t.id)}/>
+                    <Button name={'x'} onClick={() => deleteTask(t.id)}/>
                 </li>
             </ul>
         )
     }) : <div className={s.error}>Your list is empty!</div>;
 
+    const changeFilter = (value: FilterType) => {
+        return (
+            () => setFilter(value)
+        )
+    }
 
     return (
         <div className={s.wrapper}>
@@ -56,17 +61,17 @@ const TodoList: React.FC<TodoListType> = (
             <div>
                 <div className={s.inputAndButton}>
                     <Input error={error} title={inputTitle} setInputTitle={setInputTitle}/>
-                    <Button buttonCss={''} name={'Add task'} onClick={addTask}/>
+                    <Button name={'Add task'} onClick={addTask}/>
                 </div>
                 {error && <div className={s.error}>Error! Write something!</div>}
                 {mappedTasks}
             </div>
             <div className={s.filter}>
-                <Button buttonCss={filter === "all" ? 'active' : ''} name={'All'} onClick={() => setFilter('all')}/>
-                <Button buttonCss={filter === "active" ? 'active' : ''} name={'Active'}
-                        onClick={() => setFilter('active')}/>
-                <Button buttonCss={filter === "completed" ? 'active' : ''} name={'Completed'}
-                        onClick={() => setFilter('completed')}/>
+                <Button active={filter === "all"} name={'All'} onClick={changeFilter('all')}/>
+                <Button active={filter === "active"} name={'Active'}
+                        onClick={changeFilter('active')}/>
+                <Button active={filter === "completed"} name={'Completed'}
+                        onClick={changeFilter('completed')}/>
             </div>
         </div>
     );
