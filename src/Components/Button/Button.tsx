@@ -3,24 +3,19 @@ import s from './Button.module.css'
 
 type ButtonType = {
     name: string
-    onClick: ()=>void
-    buttonCss: string
+    onClick: () => void
+    active?: boolean
 }
 
 
-const Button: React.FC<ButtonType> = ({name,onClick, buttonCss}) => {
+const Button: React.FC<ButtonType> = ({name, onClick, active}) => {
 
-    const onClickHandler=()=>onClick();
+    const onClickHandler = () => onClick();
 
-
-    let style = {
-        backgroundColor: buttonCss==="active" ? 'green' : 'white',
-        color: buttonCss==="active" ? 'white' : 'black',
-    }
-
+    const className = active ? `${s.button} ${s.active}` : s.button;
 
     return (
-        <button className={s.button} style={style} onClick={onClickHandler}>{name}</button>
+        <button className={className} onClick={onClickHandler}>{name}</button>
     );
 };
 
