@@ -1,6 +1,5 @@
 import React, {ChangeEvent} from 'react';
 import s from './Input.module.css'
-import {Simulate} from "react-dom/test-utils";
 
 type InputType = {
     title: string
