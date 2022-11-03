@@ -1,0 +1,13 @@
+.input {
+    display: inline-block;
+    width: 170px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.inputError {
+    outline: 3px solid red;
+}
+
+

@@ -1,0 +1,43 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    margin: 50px;
+    border: 2px solid grey;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+    padding: 0;
+    margin: 5px auto 10px;
+}
+
+.inputAndButton {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+
+.task{
+    display: inline-block;
+    width: 180px;
+    border-bottom: 1px solid grey;
+    margin-right: 10px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin: 5px;
+}
+
+.filter {
+    width: 200px;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+}
