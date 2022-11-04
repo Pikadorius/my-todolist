@@ -35,6 +35,12 @@
     margin: 5px;
 }
 
+.notasks {
+    color: green;
+    text-align: center;
+    margin: 5px;
+}
+
 .filter {
     width: 200px;
     align-self: center;

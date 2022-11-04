@@ -47,7 +47,7 @@ const TodoList: React.FC<TodoListType> = (
                 </li>
             </ul>
         )
-    }) : <div className={s.error}>Your list is empty!</div>;
+    }) : <div className={s.notasks}>Your list is empty!</div>;
 
     const changeFilter = (value: FilterType) => {
         return (
