@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {KeyboardEvent} from 'react';
 import {FilterType, TaskType} from "../../App";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
@@ -16,6 +16,7 @@ type TodoListType = {
     setFilter: (filter: FilterType) => void
     deleteTask: (id: string) => void
     changeTaskStatus: (id: string, isDone: boolean) => void
+    onKey: (e: KeyboardEvent<HTMLInputElement>) => void
 }
 
 
@@ -29,7 +30,8 @@ const TodoList: React.FC<TodoListType> = (
         error,
         setFilter,
         deleteTask,
-        changeTaskStatus
+        changeTaskStatus,
+        onKey
     }) => {
 
     const mappedTasks = tasks.length ? tasks.map(t => {
@@ -60,7 +62,7 @@ const TodoList: React.FC<TodoListType> = (
             <h3 className={s.title}>TodoList v.1</h3>
             <div>
                 <div className={s.inputAndButton}>
-                    <Input error={error} title={inputTitle} setInputTitle={setInputTitle}/>
+                    <Input error={error} title={inputTitle} setInputTitle={setInputTitle} onKey={onKey}/>
                     <Button name={'Add task'} onClick={addTask}/>
                 </div>
                 {error && <div className={s.error}>Error! Write something!</div>}

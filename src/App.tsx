@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, KeyboardEvent} from 'react';
 import './App.css';
 import TodoList from "./Components/TodoList/TodoList";
 import {v1} from "uuid";
@@ -46,6 +46,10 @@ function App() {
         setTasks(tasks.map(t => t.id === id ? {...t, done: isDone} : t))
     }
 
+    const addOnKey = (e: KeyboardEvent<HTMLInputElement>) => {
+        e.key === 'Enter' && addTask();
+    }
+
     return (
         <div className="App">
             <TodoList
@@ -58,7 +62,8 @@ function App() {
                 addTask={addTask}
                 deleteTask={deleteTask}
                 setFilter={setFilter}
-                changeTaskStatus={changeTaskStatus}/>
+                changeTaskStatus={changeTaskStatus}
+                onKey={addOnKey}/>
         </div>
     );
 }
