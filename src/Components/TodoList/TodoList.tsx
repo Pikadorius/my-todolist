@@ -1,5 +1,5 @@
 import React, {KeyboardEvent} from 'react';
-import {FilterType, TaskType} from "../../App";
+import {FilterType, SortType, TaskType} from "../../App";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import s from './TodoList.module.css';
@@ -10,6 +10,7 @@ type TodoListType = {
     filter: FilterType
     inputTitle: string
     error: boolean
+    sort: SortType
 
     setInputTitle: (title: string) => void
     addTask: () => void
@@ -17,6 +18,7 @@ type TodoListType = {
     deleteTask: (id: string) => void
     changeTaskStatus: (id: string, isDone: boolean) => void
     onKey: (e: KeyboardEvent<HTMLInputElement>) => void
+    setSort: (sort: SortType) => void
 }
 
 
@@ -31,7 +33,9 @@ const TodoList: React.FC<TodoListType> = (
         setFilter,
         deleteTask,
         changeTaskStatus,
-        onKey
+        onKey,
+        sort,
+        setSort
     }) => {
 
     const mappedTasks = tasks.length ? tasks.map(t => {
@@ -56,6 +60,11 @@ const TodoList: React.FC<TodoListType> = (
             () => setFilter(value)
         )
     }
+    const changeSort = (sort: SortType) => {
+        return (
+            () => setSort(sort)
+        )
+    }
 
     return (
         <div className={s.wrapper}>
@@ -74,6 +83,10 @@ const TodoList: React.FC<TodoListType> = (
                         onClick={changeFilter('active')}/>
                 <Button active={filter === "completed"} name={'Completed'}
                         onClick={changeFilter('completed')}/>
+            </div>
+            <div className={s.sort}>
+                <Button active={sort === "default"} name={'Default'} onClick={changeSort('default')}/>
+                <Button active={sort === "reversed"} name={'Reversed'} onClick={changeSort('reversed')}/>
             </div>
         </div>
     );

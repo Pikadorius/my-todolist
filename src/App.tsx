@@ -10,17 +10,22 @@ export type TaskType = {
 }
 
 export type FilterType = 'all' | 'active' | 'completed'
-
+export type SortType = 'default' | 'reversed'
 
 function App() {
 
     const [tasks, setTasks] = useState<TaskType[]>([])
     const [filter, setFilter] = useState<FilterType>('all')
+    const [sort, setSort] = useState<SortType>('default')
     const [inputTitle, setInputTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
-    let filteredTasks = filter === "active" ? tasks.filter(t => !t.done) :
-        filter === "completed" ? tasks.filter(t => t.done) : tasks;
+    let sortedTasks = [...tasks];
+    sortedTasks = sort === 'default' ? sortedTasks.sort() : sortedTasks.sort().reverse();
+
+        let filteredTasks = filter === "active" ? sortedTasks.filter(t => !t.done) :
+            filter === "completed" ? sortedTasks.filter(t => t.done) : sortedTasks;
+
 
     const inputChange = (value: string) => {
         setInputTitle(value)
@@ -57,13 +62,15 @@ function App() {
                 filter={filter}
                 error={error}
                 inputTitle={inputTitle}
+                sort={sort}
 
                 setInputTitle={inputChange}
                 addTask={addTask}
                 deleteTask={deleteTask}
                 setFilter={setFilter}
                 changeTaskStatus={changeTaskStatus}
-                onKey={addOnKey}/>
+                onKey={addOnKey}
+                setSort={setSort}/>
         </div>
     );
 }

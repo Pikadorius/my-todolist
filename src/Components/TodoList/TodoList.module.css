@@ -46,4 +46,12 @@
     align-self: center;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.sort {
+    width: 150px;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
 }
