@@ -21,7 +21,7 @@ function App() {
     const [error, setError] = useState<boolean>(false)
 
     let sortedTasks = [...tasks];
-    sortedTasks = sort === 'default' ? sortedTasks.sort() : sortedTasks.sort().reverse();
+    sortedTasks = sort === 'default' ? sortedTasks : sortedTasks.reverse();
 
         let filteredTasks = filter === "active" ? sortedTasks.filter(t => !t.done) :
             filter === "completed" ? sortedTasks.filter(t => t.done) : sortedTasks;
