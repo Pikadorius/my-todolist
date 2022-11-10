@@ -1,7 +1,9 @@
-import React, {useState, KeyboardEvent} from 'react';
+import React, {useState, KeyboardEvent, useEffect} from 'react';
 import './App.css';
 import TodoList from "./Components/TodoList/TodoList";
 import {v1} from "uuid";
+import Counter from "./Components/Counter/Counter";
+import Button from "./Components/Button/Button";
 
 export type TaskType = {
     id: string
@@ -20,11 +22,29 @@ function App() {
     const [inputTitle, setInputTitle] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
+    useEffect(() => {
+        const storageData = localStorage.getItem('tasks_tl_v1')
+        storageData && setTasks(JSON.parse(storageData))
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('tasks_tl_v1', JSON.stringify(tasks))
+        console.log(JSON.stringify(tasks))
+    }, [tasks])
+
+    // const setHandler = () => {
+    //     localStorage.setItem('tasks', JSON.stringify(tasks))
+    // }
+    // const getHandler = () => {
+    //     const localData = localStorage.getItem('tasks')
+    //     localData && setTasks(JSON.parse(localData))
+    // }
+
     let sortedTasks = [...tasks];
     sortedTasks = sort === 'default' ? sortedTasks : sortedTasks.reverse();
 
-        let filteredTasks = filter === "active" ? sortedTasks.filter(t => !t.done) :
-            filter === "completed" ? sortedTasks.filter(t => t.done) : sortedTasks;
+    let filteredTasks = filter === "active" ? sortedTasks.filter(t => !t.done) :
+        filter === "completed" ? sortedTasks.filter(t => t.done) : sortedTasks;
 
 
     const inputChange = (value: string) => {
@@ -71,6 +91,9 @@ function App() {
                 changeTaskStatus={changeTaskStatus}
                 onKey={addOnKey}
                 setSort={setSort}/>
+            {/*<Button name={'set'} onClick={setHandler}/>*/}
+            {/*<Button name={'get'} onClick={getHandler}/>*/}
+            {/*<Counter/>*/}
         </div>
     );
 }
